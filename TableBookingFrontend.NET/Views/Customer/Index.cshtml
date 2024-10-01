@@ -1,0 +1,15 @@
+﻿@model List<CustomerVM>
+
+@foreach(var customer in Model)
+{
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">
+				${@customer.FirstName} {@customer.LastName}
+			</h5>
+			<p class="card-text">
+			</p>
+		</div>
+	</div>
+}
+
