@@ -5,11 +5,13 @@
 	<div class="card">
 		<div class="card-body">
 			<h5 class="card-title">
-				${@customer.FirstName} {@customer.LastName}
+				@customer.FirstName @customer.LastName
 			</h5>
-			<p class="card-text">
-			</p>
+			<p class="card-text">Email: @customer.Email</p>
+			<p class="card-text">Phone number: @customer.PhoneNumber</p>
+			<a asp-controller="Customer" asp-action="Edit" asp-route-id=@customer.CustomerId>Edit</a>
 		</div>
 	</div>
 }
 
+<a asp-action="Create" asp-controller="Customer" class="btn btn-primary">Create</a>

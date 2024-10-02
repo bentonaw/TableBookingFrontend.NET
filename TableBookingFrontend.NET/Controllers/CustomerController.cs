@@ -44,5 +44,32 @@ namespace TableBookingFrontend.NET.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var response = await _client.GetAsync($"{baseUrl}api/Customer/{id}");
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            var customer = JsonConvert.DeserializeObject<CustomerVM>(json);
+
+            return View(customer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CustomerVM customer)
+        {
+            var json = JsonConvert.SerializeObject(customer);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _client.PatchAsync($"{baseUrl}api/Customer/{customer.CustomerId}", content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                // Handle error response
+                return StatusCode((int)response.StatusCode, "An error occurred while updating the customer.");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
