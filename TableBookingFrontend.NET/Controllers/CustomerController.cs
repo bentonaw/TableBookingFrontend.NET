@@ -36,7 +36,12 @@ namespace TableBookingFrontend.NET.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CustomerVM customer)
         {
-            var json = JsonConvert.SerializeObject(customer);
+			if (!ModelState.IsValid)
+			{
+				return View(customer);
+			}
+
+			var json = JsonConvert.SerializeObject(customer);
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -59,6 +64,10 @@ namespace TableBookingFrontend.NET.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(CustomerVM customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(customer);
+            }
             var json = JsonConvert.SerializeObject(customer);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await _client.PatchAsync($"{baseUrl}api/Customer/{customer.CustomerId}", content);
