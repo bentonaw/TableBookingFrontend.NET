@@ -1,0 +1,17 @@
+﻿/* Center the navbar brand */
+.navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1; /* Ensure it's above other elements */
+}
+
+/* Keep the burger menu on the left */
+.navbar-toggler {
+    margin-right: auto;
+}
+
+/* Ensure consistent padding */
+/*.navbar-nav {
+    padding-left: 0;
+}*/
