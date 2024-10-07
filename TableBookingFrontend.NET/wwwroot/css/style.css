@@ -11,6 +11,11 @@
     margin-right: auto;
 }
 
+.maintxt {
+    background-image: url(/pics/DSCF0298.JPG);
+    background-size: cover;
+}
+
 /* Ensure consistent padding */
 /*.navbar-nav {
     padding-left: 0;
