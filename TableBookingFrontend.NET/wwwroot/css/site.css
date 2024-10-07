@@ -1,16 +1,24 @@
 @font-face {
-    font-family: 'Panchang';
-    src: url('/fonts/Panchang-Regular.woff2') format('woff2');
+    font-family: 'Clash Display';
+    src: url('/fonts/Clash-Display-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
-body {
-    font-family: Panchang, sans-serif;
+@font-face {
+    font-family: 'Comico';
+    src: url('/fonts/Comico-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
 }
 
-h1{
-    font-family: Panchang;
+.custom-font {
+    font-family: Comico;
+    font-size: 2.5em;
+}
+
+body {
+    font-family: Clash Display, sans-serif;
 }
 
 
