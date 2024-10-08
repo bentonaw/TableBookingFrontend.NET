@@ -1,4 +1,4 @@
-﻿namespace TableBookingSystem.Models.DTOs
+﻿namespace TableBookingFrontend.NET.Models
 {
     public class MenuItemVM
     {
