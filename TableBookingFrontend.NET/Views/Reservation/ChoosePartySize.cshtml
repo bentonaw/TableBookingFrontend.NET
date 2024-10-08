@@ -1,0 +1,12 @@
+﻿@model TableBookingFrontend.NET.Models.ReservationVM
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="ChoosePartySize" method="post">
+    <div class="form-group">
+        <label for="PartySize">Select size of your party:</label>
+        <input type="number" class="form-control" id="PartySize" name="NrOfSeats" min="1" max="8" required />
+        <span asp-validation-for="NrOfSeats" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>
