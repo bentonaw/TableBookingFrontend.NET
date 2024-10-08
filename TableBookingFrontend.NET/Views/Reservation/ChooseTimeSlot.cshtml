@@ -1,0 +1,16 @@
+﻿@model List<TimeSlotVM>
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="ChooseTimeSlot">
+    <div class="form-group">
+        <label for="Timeslot">Timeslot</label>
+        <select class="form-control" id="Timeslot" name="Timeslot" required>
+            @foreach (var timeslot in Model)
+            {
+                <option value="@timeslot.TimeSlotNr">@timeslot.StartTime - @timeslot.EndTime</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

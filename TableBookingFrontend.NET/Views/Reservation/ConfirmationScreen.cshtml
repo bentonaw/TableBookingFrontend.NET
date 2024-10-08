@@ -1,0 +1,13 @@
+﻿@model ReservationVM
+
+<h2>@ViewData["Confirmation"]</h2>
+
+<p>Thank you for your reservation!</p>
+
+<h3>Reservation Details:</h3>
+<p>Date: @Model.ReservationDate.ToString("MM/dd/yyyy")</p>
+<p>Time: @Model.TimeSlot.StartTime - @Model.TimeSlot.EndTime</p>
+<p>Party Size: @Model.NrOfSeats</p>
+<p>Name: @Model.Customer.FirstName @Model.Customer.LastName</p>
+<p>Email: @Model.Customer.Email</p>
+<p>Phone: @Model.Customer.PhoneNumber</p>

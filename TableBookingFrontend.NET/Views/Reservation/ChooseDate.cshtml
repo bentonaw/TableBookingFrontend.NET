@@ -1,0 +1,11 @@
+﻿@model ReservationVM
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="ChooseDate">
+    <div class="form-group">
+        <label for="ReservationDate">Date</label>
+        <input type="date" class="form-control" id="ReservationDate" name="ReservationDate" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>
