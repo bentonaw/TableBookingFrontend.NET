@@ -1,4 +1,4 @@
-﻿@model ReservationVM
+﻿@model ReservationAndTimeSlotVM
 
 <h2>@ViewData["Title"]</h2>
 
@@ -27,8 +27,8 @@
                     </div>
                     @* <button type="button" class="btn btn-primary" onclick="validateAndNext(1)">Next</button> *@
                     <button type="button" class="btn btn-primary" onclick="validateAndNext(1)">Next</button> <!-- Change to type button -->
-                    <input type="hidden" name="ReservationDate" value="@Model?.ReservationDate" />
-                    <input type="hidden" name="TimeSlot.TimeSlotNr" value="@Model?.TimeSlot?.TimeSlotNr" />
+                    <input type="hidden" name="ReservationDate" value="@Model?.reservationVM.ReservationDate" />
+                    <input type="hidden" name="TimeSlot.TimeSlotNr" value="@Model?.timeSlotVM.TimeSlotNr" />
                     @* <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button> *@
                 
                 </form>
@@ -54,8 +54,8 @@
                     </div>
                     @* <button type="submit" class="btn btn-primary">Next</button> *@
                     <button type="button" class="btn btn-primary" onclick="validateAndNext(2)">Next</button>
-                    <input type="hidden" name="NrOfSeats" value="@Model?.NrOfSeats" />
-                    <input type="hidden" name="TimeSlot.TimeSlotNr" value="@Model?.TimeSlot?.TimeSlotNr" />
+                    <input type="hidden" name="NrOfSeats" value="@Model?.reservationVM.NrOfSeats" />
+                    <input type="hidden" name="TimeSlot.TimeSlotNr" value="@Model?.timeSlotVM.TimeSlotNr" />
                     @* <button type="button" class="btn btn-primary" onclick="nextStep()">Next</button> *@
                 
                 </form>
@@ -83,13 +83,16 @@
                     <div class="form-group">
                         <label for="Timeslot">Select your time:</label>
                         <select class="form-control" id="Timeslot" name="TimeSlot.TimeSlotNr" required>
-                            <!-- Time slots will be dynamically populated here -->
+                            @foreach (var timeSlot in Model.timeSlotVMs)
+                            {
+                                <option value="@timeSlot.TimeSlotNr">@timeSlot.StartTime - @timeSlot.EndTime</option>
+                            }
                         </select>
                     </div>
                     @* <button type="submit" class="btn btn-primary">Done</button> *@
                     <button type="button" class="btn btn-primary" onclick="validateAndSubmit()">Done</button>
-                    <input type="hidden" name="NrOfSeats" id="hiddenSeats" value="@Model?.NrOfSeats" />
-                    <input type="hidden" name="ReservationDate" id="hiddenDate" value="@Model?.FormattedReservationDate" />
+                    <input type="hidden" name="NrOfSeats" id="hiddenSeats" value="@Model?.reservationVM.NrOfSeats" />
+                    <input type="hidden" name="ReservationDate" id="hiddenDate" value="@Model?.reservationVM.ReservationDate" />
                     @* <button type="submit" class="btn btn-primary" onclick="validateAndSubmit()">Done</button> *@
                 
                 </form>
@@ -98,14 +101,14 @@
             <div class="carousel-item">
                 <form id="confirmationForm" method="post" action="@Url.Action("ConfirmationScreen", "Reservation")">
                     <h3>Confirm your reservation details:</h3>
-                    <p>Party Size: <span id="partySizeText">@Model?.NrOfSeats</span></p>
-                    <p>Reservation Date: <span id="reservationDateText">@Model?.FormattedReservationDate</span></p>
-                    <p>Time Slot: <span id="timeSlotText">@Model?.TimeSlot.StartTime - @Model?.TimeSlot.EndTime</span></p>
+                    <p>Party Size: <span id="partySizeText">@Model?.reservationVM.NrOfSeats</span></p>
+                    <p>Reservation Date: <span id="reservationDateText">@Model?.reservationVM.ReservationDate</span></p>
+                    <p>Time Slot: <span id="timeSlotText">@Model?.timeSlotVM.StartTime - @Model?.timeSlotVM.EndTime</span></p>
 
                     <!-- Submit entire form -->
-                    <input type="hidden" name="NrOfSeats" value="@Model?.NrOfSeats" />
-                    <input type="hidden" name="ReservationDate" value="@Model?.FormattedReservationDate" />
-                    <input type="hidden" name="TimeSlot.TimeSlotNr" value="@Model?.TimeSlot?.TimeSlotNr" />
+                    <input type="hidden" name="NrOfSeats" value="@Model?.reservationVM.NrOfSeats" />
+                    <input type="hidden" name="ReservationDate" value="@Model?reservationVM.ReservationDate" />
+                    <input type="hidden" name="TimeSlot.TimeSlotNr" value="@Model?.timeSlotVM?.TimeSlotNr" />
                     <button type="submit" class="btn btn-success">Confirm Reservation</button>
                 </form>
             </div>
@@ -114,33 +117,33 @@
 </div>
 
 <script>
-    // Function to load time slots when the carousel reaches the time slot step
-    function loadTimeSlots() {
-        fetch('/api/Reservation/Timeslots') // API endpoint for time slots
-            .then(response => response.json())
-            .then(data => {
-                let timeSlotDropdown = document.getElementById('Timeslot');
-                timeSlotDropdown.innerHTML = ''; // Clear previous options
+    // // Function to load time slots when the carousel reaches the time slot step
+    // function loadTimeSlots() {
+    //     fetch('/api/Reservation/Timeslots') // API endpoint for time slots
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             let timeSlotDropdown = document.getElementById('Timeslot');
+    //             timeSlotDropdown.innerHTML = ''; // Clear previous options
 
-                // Populate dropdown with the retrieved timeslots
-                data.forEach(slot => {
-                    let option = document.createElement('option');
-                    option.value = slot.timeSlotNr; // Assuming 'timeSlotNr' is the ID or value
-                    option.text = `${slot.startTime} - ${slot.endTime}`;
-                    timeSlotDropdown.appendChild(option);
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching time slots:', error);
-            });
-    }
+    //             // Populate dropdown with the retrieved timeslots
+    //             data.forEach(slot => {
+    //                 let option = document.createElement('option');
+    //                 option.value = slot.timeSlotNr; // Assuming 'timeSlotNr' is the ID or value
+    //                 option.text = `${slot.startTime} - ${slot.endTime}`;
+    //                 timeSlotDropdown.appendChild(option);
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.error('Error fetching time slots:', error);
+    //         });
+    // }
 
-    // Ensure this function is called when the user reaches the Time Slot step
-    document.getElementById('reservationCarousel').addEventListener('slid.bs.carousel', function (event) {
-        if (event.to === 2) { // Assuming time slot is the third step (index 2)
-            loadTimeSlots();
-        }
-    });
+    // // Ensure this function is called when the user reaches the Time Slot step
+    // document.getElementById('reservationCarousel').addEventListener('slid.bs.carousel', function (event) {
+    //     if (event.to === 2) { // Assuming time slot is the third step (index 2)
+    //         loadTimeSlots();
+    //     }
+    // });
 
     function validateAndNext(step) {
         var form;
