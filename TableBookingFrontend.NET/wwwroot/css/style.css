@@ -16,7 +16,16 @@
     background-size: cover;
 }
 
+.max-width {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Ensure consistent padding */
 /*.navbar-nav {
     padding-left: 0;
 }*/
+
+.info-field{
+    height: 14em;
+}
