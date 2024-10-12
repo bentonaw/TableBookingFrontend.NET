@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using TableBookingFrontend.NET.Models;
 
 namespace TableBookingFrontend.NET.Controllers
 {
@@ -10,9 +12,17 @@ namespace TableBookingFrontend.NET.Controllers
         {
             _client = client;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+			ViewData["Title"] = "Menu";
+
+			var response = await _client.GetAsync($"{baseUrl}api/Menu");
+
+			var json = await response.Content.ReadAsStringAsync();
+
+			var customerList = JsonConvert.DeserializeObject<List<MenuItemVM>>(json);
+
+			return View(customerList);
+		}
     }
 }
