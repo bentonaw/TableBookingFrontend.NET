@@ -1,7 +1,7 @@
 ﻿
 <h3>@ViewData["Title"]</h3>
 
-<div>
+@* <div>
     <ul class="">
         <li class="nav-item">
             <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="" asp-action="Menu">View Menu Options</a>
@@ -10,4 +10,63 @@
             <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="" asp-action="Admin">View Admin Options</a>
         </li>
     </ul>
+</div> *@
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Menu</h5>
+                    <p class="card-text">WIP</p>
+                    <a href="#" class="btn btn-primary">Edit Menu</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Customers</h5>
+                    <p class="card-text">WIP</p>
+                    <a href="#" class="btn btn-primary">View Customers</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Reservations</h5>
+                    <p class="card-text">WIP</p>
+                    <a href="#" class="btn btn-primary">View Reservations</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Admin Settings</h5>
+                    <p class="card-text">Not Functional. Settings to add more admins, add more options to the admin menu etc</p>
+                    <a href="#" class="btn btn-primary">View Settings</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Layout Settings</h5>
+                    <p class="card-text">Not Functional. Settings to edit main screen, nav bar, fonts, colors etc</p>
+                    <a href="#" class="btn btn-primary">View Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<form action="@Url.Action("Logout", "Admin")" method="post" style="position: fixed; bottom: 120px; right: 20px;">
+    <button type="submit" class="btn btn-danger">Log Out</button>
+</form>
