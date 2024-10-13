@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Admin Login</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<form method="post" asp-action="Login">
+    <div class="mb-3">
+        <label for="InputEmail" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
+        <div id="emailHelp" class="form-text">Only for authorized access</div>
+    </div>
+    <div class="mb-3">
+        <label for="InputPassword1" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="InputPassword" required>
+    </div>
+    <div class="mb-3 form-check">
+        <input type="checkbox" name="rememberMe" class="form-check-input" id="rememberCheck">
+        <label class="form-check-label" for="rememberCheck">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
