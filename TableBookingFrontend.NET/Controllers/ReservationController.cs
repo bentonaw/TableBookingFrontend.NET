@@ -203,6 +203,7 @@ namespace TableBookingFrontend.NET.Controllers
 
             if (response.IsSuccessStatusCode)
             {
+                ViewData["Message"] = "thank you";
                 return RedirectToAction("Index");
             }
             else
