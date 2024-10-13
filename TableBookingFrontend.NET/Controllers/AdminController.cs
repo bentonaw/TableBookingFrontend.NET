@@ -87,6 +87,7 @@ namespace TableBookingFrontend.NET.Controllers
             return View();
 
         }
+
         private async Task<bool> ValidateUser(string email, string password)
         {
             // This is a placeholder function. TODO Replace with real logic to check with the database.
@@ -96,6 +97,35 @@ namespace TableBookingFrontend.NET.Controllers
             }
 
             return false;
+        }
+
+        // POST: Logout action
+        [HttpPost]
+        public IActionResult Logout()
+        {
+            // Delete the cookie by setting its expiration to a past date
+            Response.Cookies.Delete("CookieKey");
+            Response.Cookies.Delete("30CookieKey");
+
+            // Redirect to the login page
+            return RedirectToAction("Login");
+        }
+
+        public IActionResult Menu()
+        {
+            return View();
+        }
+        public IActionResult Customers()
+        {
+            return View();
+        }
+        public IActionResult Reservations()
+        {
+            return View();
+        }
+        public IActionResult Settings()
+        {
+            return View();
         }
     }
 }
