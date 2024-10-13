@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Clash Display';
-    src: url('/fonts/Clash-Display-Regular.woff2') format('woff2');
+    font-family: 'Zodiak';
+    src: url('/fonts/Zodiak-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -18,7 +18,7 @@
 }
 
 body {
-    font-family: Clash Display, sans-serif;
+    font-family: Zodiak, sans-serif;
 }
 
 

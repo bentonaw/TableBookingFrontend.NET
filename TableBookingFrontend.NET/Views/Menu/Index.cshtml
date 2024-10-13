@@ -1,0 +1,33 @@
+﻿@model List<MenuItemVM>
+
+<div class-"menu-layout">
+	@foreach (var menuItem in Model)
+{
+	<div>
+		<div class="menu-section">
+			<h5 class="display-6">@menuItem.MenuItemName</h5>
+			<p>@menuItem.Price</p>
+		</div>
+	</div>
+}
+<div></div>
+</div>
+
+@* @foreach (var menuItem in Model)
+{
+
+@* 	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">
+				@customer.FullName
+			</h5>
+			<p class="card-text">Email: @customer.Email</p>
+			<p class="card-text">Phone number: @customer.PhoneNumber</p>
+			<a asp-controller="Customer" asp-action="Edit" asp-route-id=@customer.CustomerId class="btn btn-warning">Edit</a>
+			@* <a asp-controller="Customer" asp-action="Delete" asp-route-id=@customer.CustomerId class="btn btn-danger">Delete</a> *@
+			@* <form method="post" asp-action="Delete" style="display:inline;">
+				<input type="hidden" name="id" value="@customer.CustomerId" />
+				<button type="submit" class="btn btn-danger">Delete</button>
+			</form>
+		</div>
+	</div> *@ 
