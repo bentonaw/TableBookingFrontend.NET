@@ -25,11 +25,9 @@ namespace TableBookingFrontend.NET.Controllers
 
             return View();
         }
-
         public async Task<IActionResult> Login()
         {
             
         }
-
     }
 }
