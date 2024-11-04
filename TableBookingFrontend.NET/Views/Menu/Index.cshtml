@@ -1,33 +1,22 @@
-﻿@model List<MenuItemVM>
-
-<div class-"menu-layout">
-	@foreach (var menuItem in Model)
-{
-	<div>
-		<div class="menu-section">
-			<h5 class="display-6">@menuItem.MenuItemName</h5>
-			<p>@menuItem.Price</p>
-		</div>
-	</div>
-}
-<div></div>
+﻿<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 mt-5">
+            <h2 class="mb-5 text-center">Menu</h2>
+            @foreach (var menuItem in Model)
+            {
+                <div class="row mb-3 align-items-start">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mb-1 pe-2">@menuItem.MenuItemName</h5>
+                            <p class="fw-bold mb-0">@menuItem.Price.ToString("C")</p>
+                        </div>
+                        @if (!string.IsNullOrEmpty(menuItem.MenuDescription))
+                        {
+                            <p class="text-muted small mb-0">@menuItem.MenuDescription</p>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>
-
-@* @foreach (var menuItem in Model)
-{
-
-@* 	<div class="card">
-		<div class="card-body">
-			<h5 class="card-title">
-				@customer.FullName
-			</h5>
-			<p class="card-text">Email: @customer.Email</p>
-			<p class="card-text">Phone number: @customer.PhoneNumber</p>
-			<a asp-controller="Customer" asp-action="Edit" asp-route-id=@customer.CustomerId class="btn btn-warning">Edit</a>
-			@* <a asp-controller="Customer" asp-action="Delete" asp-route-id=@customer.CustomerId class="btn btn-danger">Delete</a> *@
-			@* <form method="post" asp-action="Delete" style="display:inline;">
-				<input type="hidden" name="id" value="@customer.CustomerId" />
-				<button type="submit" class="btn btn-danger">Delete</button>
-			</form>
-		</div>
-	</div> *@ 
