@@ -1,0 +1,121 @@
+﻿@model IEnumerable<TableBookingFrontend.NET.Models.ReservationVM>
+@{
+    ViewData["Title"] = "Search Reservations";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
+
+    <!-- Search Options -->
+    <div class="search-container">
+        <ul class="nav nav-tabs" id="searchTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="date-tab" data-bs-toggle="tab" data-bs-target="#date" type="button" role="tab">Search by Date Range</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="customer-tab" data-bs-toggle="tab" data-bs-target="#customer" type="button" role="tab">Search by Customer</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="id-tab" data-bs-toggle="tab" data-bs-target="#id" type="button" role="tab">Search by ID</button>
+            </li>
+        </ul>
+
+        <div class="tab-content pt-3" id="searchTabContent">
+            <!-- Date Range Search -->
+            <div class="tab-pane fade show active" id="date" role="tabpanel">
+                <form id="dateRangeForm" method="get" action="@Url.Action("SearchByDateRange", "Reservation")" class="row g-3">
+                    <div class="col-md-5">
+                        <label class="form-label" for="startDate">Start Date</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label" for="endDate">End Date</label>
+                        <input type="date" class="form-control" id="endDate" name="endDate" required>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Customer Search -->
+            <div class="tab-pane fade" id="customer" role="tabpanel">
+                <form id="customerForm" method="get" action="@Url.Action("SearchByCustomer", "Reservation")" class="row g-3">
+                    <div class="col-md-10">
+                        <label class="form-label" for="lastName">Customer Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- ID Search -->
+            <div class="tab-pane fade" id="id" role="tabpanel">
+                <form id="idForm" method="get" action="@Url.Action("SearchById", "Reservation")" class="row g-3">
+                    <div class="col-md-10">
+                        <label class="form-label" for="reservationId">Reservation ID</label>
+                        <input type="number" class="form-control" id="reservationId" name="id" required>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn btn-primary w-100">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="results-container">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer Name</th>
+                        <th>Date</th>
+                        <th>Time Slot</th>
+                        <th>Table</th>
+                        <th>Seats</th>
+                        <th>Contact</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                    @if (Model?.Any() == true)
+                    {
+                        foreach (var reservation in Model)
+                        {
+                            <tr>
+                                <td>@reservation.ReservationId</td>
+                                <td>@($"{reservation.Customer.FullName}")</td>
+                                <td>@reservation.FormattedReservationDate</td>
+                                <td>@($"{reservation.TimeSlot.StartTime.ToString()}{reservation.TimeSlot.EndTime.ToString()}")</td>
+                                <td>@reservation.Table.TableNumber</td>
+                                <td>@reservation.NrOfSeats</td>
+                                <td>
+                                    <small>
+                                        <div>@reservation.Customer.Email</div>
+                                        <div>@reservation.Customer.PhoneNumber</div>
+                                    </small>
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("SearchById", new { id = reservation.ReservationId })" class="btn btn-sm btn-outline-primary">View</a>
+                                    <a href="@Url.Action("Edit", new { id = reservation.ReservationId })" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center text-muted">No reservations found.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
