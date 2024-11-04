@@ -1,0 +1,58 @@
+﻿@model TableBookingFrontend.NET.Models.ReservationVM
+
+@{
+    ViewData["Title"] = "Edit Reservation";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
+
+    <div class="card">
+        <div class="card-header">
+            Edit Reservation
+        </div>
+        <div class="card-body">
+            <form method="post" action="@Url.Action("Edit", "Reservation")">
+                <input type="hidden" asp-for="ReservationId" />
+
+                <div class="mb-3">
+                    <label for="CustomerFullName" class="form-label">Customer Name</label>
+                    <input type="text" class="form-control" id="CustomerFullName" asp-for="Customer.FullName" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="ReservationDate" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="ReservationDate" asp-for="FormattedReservationDate" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="TimeSlot" class="form-label">Time Slot</label>
+                    <input type="text" class="form-control" id="TimeSlot" value="@Model.TimeSlot.StartTime.ToString() - @Model.TimeSlot.EndTime.ToString()" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label for="TableNumber" class="form-label">Table</label>
+                    <input type="text" class="form-control" id="TableNumber" asp-for="Table.TableNumber" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="NrOfSeats" class="form-label">Seats</label>
+                    <input type="number" class="form-control" id="NrOfSeats" asp-for="NrOfSeats" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="CustomerEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="CustomerEmail" asp-for="Customer.Email" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="CustomerPhoneNumber" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="CustomerPhoneNumber" asp-for="Customer.PhoneNumber" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="@Url.Action("Index", "Reservation")" class="btn btn-secondary">Back to List</a>
+            </form>
+        </div>
+    </div>
+</div>
