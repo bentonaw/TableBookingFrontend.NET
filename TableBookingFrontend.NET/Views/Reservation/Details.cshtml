@@ -1,0 +1,30 @@
+﻿@model TableBookingFrontend.NET.Models.ReservationVM
+
+@{
+    ViewData["Title"] = "Reservation Details";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4 text-center">@ViewData["Title"]</h2>
+
+    <div class="card">
+        <div class="card-header">
+            Reservation Details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Reservation ID: @Model.ReservationId</h5>
+            <p class="card-text"><strong>Customer Name:</strong> @Model.Customer.FullName</p>
+            <p class="card-text"><strong>Date:</strong> @Model.FormattedReservationDate</p>
+            <p class="card-text"><strong>Time Slot:</strong> @Model.TimeSlot.StartTime.ToString() - @Model.TimeSlot.EndTime.ToString()</p>
+            <p class="card-text"><strong>Table:</strong> @Model.Table.TableNumber</p>
+            <p class="card-text"><strong>Seats:</strong> @Model.NrOfSeats</p>
+            <p class="card-text"><strong>Contact:</strong></p>
+            <ul>
+                <li>Email: @Model.Customer.Email</li>
+                <li>Phone: @Model.Customer.PhoneNumber</li>
+            </ul>
+            <a href="@Url.Action("Edit", new { id = Model.ReservationId })" class="btn btn-primary">Edit</a>
+            <a href="@Url.Action("Search", "Reservation")" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+</div>
