@@ -24,9 +24,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
+                       @*  <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
-                        </li>
+                        </li> *@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
                         </li>
@@ -42,8 +42,8 @@
                 <a class="navbar-brand position-absolute start-50 translate-middle-x custom-font" asp-area="" asp-controller="Home" asp-action="Index">Snacks</a>
 
                 <div>
-                    <a class="nav-link text-dark d-none d-lg-block" asp-area="" asp-controller="Reservation" asp-action="ChoosePartySize">Make a Reservation</a>
-                    <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="Reservation" asp-action="ChoosePartySize">Reservation</a>
+                    <a class="nav-link text-dark d-none d-lg-block" href="http://localhost:5173/reservation">Make a Reservation</a>
+                    <a class="nav-link text-dark d-lg-none" href="http://localhost:5173/reservation">Reservation</a>
                 </div>
 
             </div>
