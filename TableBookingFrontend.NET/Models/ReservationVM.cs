@@ -12,6 +12,7 @@ namespace TableBookingFrontend.NET.Models
         [JsonIgnore]
         public DateTime ReservationDate { get; set; }
         public TimeSlotVM TimeSlot { get; set; }
+        public TableVM Table { get; set; }
         public string FormattedReservationDate => ReservationDate.ToString("yyyy-MM-dd");
     }
 }
