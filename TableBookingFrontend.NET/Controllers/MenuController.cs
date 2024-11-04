@@ -16,13 +16,13 @@ namespace TableBookingFrontend.NET.Controllers
         {
 			ViewData["Title"] = "Menu";
 
-			var response = await _client.GetAsync($"{baseUrl}api/Menu");
+			var response = await _client.GetAsync($"{baseUrl}api/Menu/menu-items");
 
 			var json = await response.Content.ReadAsStringAsync();
 
-			var customerList = JsonConvert.DeserializeObject<List<MenuItemVM>>(json);
+			var menuItemList = JsonConvert.DeserializeObject<List<MenuItemVM>>(json);
 
-			return View(customerList);
+			return View(menuItemList);
 		}
     }
 }
