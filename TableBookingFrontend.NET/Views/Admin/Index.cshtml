@@ -1,19 +1,10 @@
 ﻿
 <h3>@ViewData["Title"]</h3>
 
-@* <div>
-    <ul class="">
-        <li class="nav-item">
-            <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="" asp-action="Menu">View Menu Options</a>
-            <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="" asp-action="Customer">View Customer Options</a>
-            <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="" asp-action="Reservation">View Reservation Options</a>
-            <a class="nav-link text-dark d-lg-none" asp-area="" asp-controller="" asp-action="Admin">View Admin Options</a>
-        </li>
-    </ul>
-</div> *@
-
 <div class="container">
     <div class="row">
+
+        <!-- Layout Settings Card -->
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
@@ -24,26 +15,32 @@
                 </div>
             </div>
         </div>
+
+        <!-- Customers Card -->
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Customers</h5>
                     <p class="card-text">WIP</p>
-                    <a href="#" class="btn btn-primary">View Customers</a>
+                    <a href="@Url.Action("Index", "Reservation")" class="btn btn-primary">View Customers</a>
                 </div>
             </div>
         </div>
+
+        <!-- Reservations Card -->
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">Reservations</h5>
-                    <p class="card-text">WIP</p>
-                    <a href="#" class="btn btn-primary">View Reservations</a>
+                    <p class="card-text">View and manage reservations</p>
+                    <a href="@Url.Action("Search", "Reservation")" class="btn btn-primary">Search Reservations</a>
                 </div>
             </div>
         </div>
+
+        <!-- Admin Settings Card -->
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
@@ -54,6 +51,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Layout Settings Card -->
         <div class="col">
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
